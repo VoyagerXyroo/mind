@@ -1,0 +1,46 @@
+
+
+<?php
+    $nickname = "";
+
+    if (isset($_POST['save'])) {
+        $id = $_POST['id'];
+        $zone = $_POST['zone'];
+
+
+        $id = filter_var($id, FILTER_VALIDATE_INT);
+        $zone = filter_var($zone, FILTER_VALIDATE_INT);
+
+        if ($id && $zone) {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "https://cekid.solusimedia.my.id/v2/game/?code=MOBILE_LEGENDS&id=" . $id . "&other=" . $zone . "&key=14e46b20666b12d");
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            $result = curl_exec($ch);
+            $error = curl_error($ch);
+            curl_close($ch);
+
+            if ($error) {
+                $nickname = "Error: " . $error;
+            } else {
+                $res = json_decode($result, true);
+
+                if (isset($res) && array_key_exists("nickname", $res)) {
+                    $nickname = $res["nickname"];
+                } else {
+                    $nickname = "Nickname not found";
+                }
+            }
+        } else {
+            $nickname = "Invalid input";
+        }
+    }
+    ?>
+
+
+
+
+
+
+
+<?php if (!empty($nickname)) { echo $nickname; } ?>
