@@ -2084,7 +2084,7 @@ textarea.w-select {
   display: flex;
 }
 .w-commerce-commercecarterrorstate {
-  background-color: #ffdede;
+  background-color: #740000;
   flex: none;
   margin: 0 24px 24px;
   padding: 10px;
@@ -3272,7 +3272,10 @@ figcaption {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute;
+  position: relative;
+}
+.padding-medium {
+  padding-top: 50px;
 }
 .cover-image.is-parallax {
   height: 120%;
@@ -4623,7 +4626,7 @@ figcaption {
   width: 100%;
   text-transform: uppercase;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: stretch;
   font-family: Big Shoulders Variable, sans-serif;
   display: flex;

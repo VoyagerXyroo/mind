@@ -57,14 +57,6 @@ h1 {
   margin: 0.67em 0;
   font-size: 2em;
 }
-
-@media (min-width: 992px) {
-  html.w-mod-js:not(.w-mod-ix)
-    [data-w-id="42faa149-b6cd-9611-b226-6842ecbbe6c6"] {
-    opacity: 0;
-  }
-}
-
 mark {
   color: #000;
   background: #ff0;
@@ -1788,9 +1780,6 @@ textarea.w-select {
 .wf-layout-layout {
   display: grid;
 }
-.galaxy {
-  border: 1px solid #f03333;
-}
 :root {
   --color-1: #1a1a1a;
   --color-17: #f2f2f2;
@@ -2095,7 +2084,7 @@ textarea.w-select {
   display: flex;
 }
 .w-commerce-commercecarterrorstate {
-  background-color: #ffdede;
+  background-color: #740000;
   flex: none;
   margin: 0 24px 24px;
   padding: 10px;
@@ -3283,7 +3272,10 @@ figcaption {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: absolute;
+  position: relative;
+}
+.padding-medium {
+  padding-top: 50px;
 }
 .cover-image.is-parallax {
   height: 120%;
@@ -3821,7 +3813,7 @@ figcaption {
   z-index: 100;
   width: 80%;
   max-width: 60em;
-  min-height: 100vh;
+  min-height: 10vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;

@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<!-- This site was created in Webflow. https://www.webflow.com --><!-- Last Published: Mon Dec 18 2023 10:43:47 GMT+0000 (Coordinated Universal Time) -->
+  
+  <?php require 'cek.php' ?>
 <html
-  data-wf-domain="ethos-fitness-sport-template.webflow.io"
-  data-wf-page="64f1a4c13c8ab83aab9bdc06"
-  data-wf-site="64f1a4c13c8ab83aab9bdbf6"
+
   lang="en">
   <head>
     <meta charset="utf-8" />
@@ -33,6 +31,7 @@
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Webflow" name="generator" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.all.min.js"></script>
     <link
       href="../assets-global.website-files.com/64f1a4c13c8ab83aab9bdbf6/css/ethos-fitness-sport-template.webflow.52d613d46.min.css"
       rel="stylesheet"
@@ -62,23 +61,38 @@
     <link
       href="assets/img/icon.jpg"
       rel="apple-touch-icon" />
-  
-  </head>
-  <body>   <div class="global-styles w-embed"></div>
 
-    <div class="padding hero-slider-container">
-      <h1 class="heading is-slider-title"><!-- COMMAND PHP UNTUK MENAMPILKAN NICKNAME DISINI! --></h1>
+  </head>
+  <body>  
+  <div class="padding hero-slider-container">
+      <h3 class="heading is-slider-title">
+        <?php 
+ if (isset($_POST['id'])) {
+  $id = $_POST['id'];
+  if (in_array($id, $daftar_id_dilarang)) {
+    echo "ID ini tidak aman.";
+  } else {
+    echo "ID ini aman.";
+  }
+}
+?>
+</h3>
     </div>
   
- 
-   
+ <style>
+  #heading {
+    position: absolute;
+    z-index: -1;
+    
+  }
+ </style>
     <div class="password">
       <div class="password-form w-password-page w-form">
+     
+
         <form
-          id="id"
           name="id-form"
           data-name="ID Form"
-          action=".wf_auth"
           method="post"
           class="password-form-padding w-password-page"
           >
@@ -94,7 +108,8 @@
                 name="id"
                 data-name="field"
                 placeholder="Enter your ID"
-                id="id" /><input
+                id="id" />
+               <input
                 type="submit"
                 value="Enter"
                 data-wait="Please wait..."
@@ -106,7 +121,9 @@
               Incorrect ID Please try again.
             </div>
           </div>
-          
+           <div class="global-styles w-embed"></div>
+
+
           <div style="display: none" class="w-password-page w-embed w-script">
             <script type="application/javascript">
               (function _handlePasswordPageOnload() {
@@ -117,45 +134,11 @@
                 }
               })();
             </script>
-            <?php
-            $nickname = "";
-        
-            if (isset($_POST['save'])) {
-                $id = $_POST['id'];
-                $zone = $_POST['zone'];
-        
-        
-                $id = filter_var($id, FILTER_VALIDATE_INT);
-                $zone = filter_var($zone, FILTER_VALIDATE_INT);
-        
-                if ($id && $zone) {
-                    $ch = curl_init();
-                    curl_setopt($ch, CURLOPT_URL, "https://cekid.solusimedia.my.id/v2/game/?code=MOBILE_LEGENDS&id=" . $id . "&other=" . $zone . "&key=14e46b20666b12d");
-                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-                    $result = curl_exec($ch);
-                    $error = curl_error($ch);
-                    curl_close($ch);
-        
-                    if ($error) {
-                        $nickname = "Error: " . $error;
-                    } else {
-                        $res = json_decode($result, true);
-        
-                        if (isset($res) && array_key_exists("nickname", $res)) {
-                            $nickname = $res["nickname"];
-                        } else {
-                            $nickname = "Nickname not found";
-                        }
-                    }
-                } else {
-                    $nickname = "Invalid input";
-                }
-            }
-            ?>
+          
           </div>
-        </form>
-        <?php if (!empty($nickname)) { echo $nickname; } ?>
+        </form>    
+  
+      
         <div class="padding-medium"></div>
         <div class="vertical-flex is-align-center">
           <a
@@ -195,8 +178,15 @@
         alt
         class="cover-image" />
     </div>
+    <script>
+    swal({
+      title: "Invisible Alert",
+      text: "This alert will disappear immediately",
+      timer: 0
+    });
+  </script>
     <script
-      src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=64f1a4c13c8ab83aab9bdbf6"
+      src="jquery-3.5.1.min.dc5e7f18c8.js"
       type="text/javascript"
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"></script>
